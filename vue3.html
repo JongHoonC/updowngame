@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>up & down 게임</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="css/common/reset.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="game__intro">
+        <h2>게임 방법</h2>
+        <p>
+          게임 당 1부터 100까지의 숫자중 한개의 무작위의 숫자가 정해진다. <br />
+          사용자는 임의의 숫자를 입력해 정해진 기회 안에 무작위로 정해진 숫자를
+          맞추는 게임 입니다.
+        </p>
+        <div class="game">
+          <h1 class="hide">{{randomNum}}</h1>
+          <input type="text" v-model="tiped" @keyup.enter="click" />
+          <button class="click" type="submit" @:click="click">
+            정답 확인하기!!
+          </button>
+          <h1>{{lifeCount}}</h1>
+          <h1>{{result}}</h1>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          randomNum: Math.ceil(Math.random() * 100),
+          lifeCount: 7,
+          tiped: "",
+          result: "",
+        };
+      },
+      methods: {
+        click() {
+          if (this.tiped == "") {
+            this.result = "다시 입력해주세요";
+            this.tiped = "";
+          } else {
+            if (this.randomNum == this.tiped) {
+              this.result = "정답입니다!!";
+            } else if (this.randomNum > this.tiped) {
+              this.result = "UP!!";
+              this.lifeCount--;
+              this.tiped = "";
+            } else if (this.randomNum < this.tiped) {
+              this.result = "DOWN!!";
+              this.lifeCount--;
+              this.tiped = "";
+            } else if (parsezInt(this.tiped) > 100) {
+              this.result = "1부터 100까지의 수를 입력해주세요";
+              this.tiped = "";
+            } else {
+              this.result = "숫자를 입력해주세요";
+              this.tiped = "";
+            }
+          }
+        },
+      },
+      computed: {},
+    }).mount("#app");
+  </script>
+  <script></script>
+  <style scoped>
+    @import url(css/index.css);
+  </style>
+</html>
