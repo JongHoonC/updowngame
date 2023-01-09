@@ -45,28 +45,9 @@
       },
       methods: {
         click() {
-          if (this.tiped == "") {
-            this.result = "다시 입력해주세요";
-            this.tiped = "";
-          } else {
-            if (this.randomNum == this.tiped) {
-              this.result = "정답입니다!!";
-            } else if (this.randomNum > this.tiped) {
-              this.result = "UP!!";
-              this.lifeCount--;
-              this.tiped = "";
-            } else if (this.randomNum < this.tiped) {
-              this.result = "DOWN!!";
-              this.lifeCount--;
-              this.tiped = "";
-            } else if (parsezInt(this.tiped) > 101) {
-              this.result = "1부터 100까지의 수를 입력해주세요";
-              this.tiped = "";
-            } else {
-              this.result = "숫자를 입력해주세요";
-              this.tiped = "";
-            }
-          }
+          // if 문에는 0부터 101 까지
+          // else if 에는 null
+          // else에는 숫자를 입력해주세요
         },
       },
       computed: {},
