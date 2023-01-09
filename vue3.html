@@ -17,15 +17,17 @@
           사용자는 임의의 숫자를 입력해 정해진 기회 안에 무작위로 정해진 숫자를
           맞추는 게임 입니다.
         </p>
-        <div class="game">
-          <h1 class="hide">{{randomNum}}</h1>
+      </div>
+      <div class="game">
+        <h1 class="hide">{{randomNum}}</h1>
+        <h1 class="res">{{result}}</h1>
+        <div class="tiped">
           <input type="text" v-model="tiped" @keyup.enter="click" />
           <button class="click" type="submit" @:click="click">
             정답 확인하기!!
           </button>
-          <h1>{{lifeCount}}</h1>
-          <h1>{{result}}</h1>
         </div>
+        <h1 class="life">남은 기회 : {{lifeCount}}</h1>
       </div>
     </div>
   </body>
@@ -57,7 +59,7 @@
               this.result = "DOWN!!";
               this.lifeCount--;
               this.tiped = "";
-            } else if (parsezInt(this.tiped) > 100) {
+            } else if (parsezInt(this.tiped) > 101) {
               this.result = "1부터 100까지의 수를 입력해주세요";
               this.tiped = "";
             } else {
