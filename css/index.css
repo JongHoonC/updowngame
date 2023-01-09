@@ -41,19 +41,22 @@ button {
 .res {
   position: relative;
   bottom: 100px;
-  font-size: 100px;
+  font-size: 90px;
   font-weight: bold;
 }
 .tiped {
   position: absolute;
   top: 60%;
   left: 50%;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
   transform: translate(-50%);
 }
 .life {
   position: absolute;
   bottom: 100px;
   left: 50%;
-  transform: translate(-50%);
   font-size: 30px;
+  transform: translate(-50%);
 }
