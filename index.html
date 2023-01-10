@@ -29,6 +29,18 @@
         </div>
         <h1 class="life">남은 기회 : {{lifeCount}}</h1>
       </div>
+      <div id="succes" class="endgame" v-show="display">
+        <h1>정답을 맞췄습니다. <br />축하합니다~~</h1>
+        <p>
+          <a href="index.html">재시작하기</a>
+        </p>
+      </div>
+      <div id="fail" class="endgame" v-if="lifeCount==0">
+        <h1>아쉽습니다.<br />정답은 {{randomNum}} 입니다.</h1>
+        <p>
+          <a href="index.html">재시작하기</a>
+        </p>
+      </div>
     </div>
   </body>
   <script>
@@ -41,11 +53,15 @@
           lifeCount: 7,
           tiped: "",
           result: "",
+          display: false,
         };
       },
       methods: {
         click() {
-          if (0 < parseInt(this.tiped) < 101) {
+          let succes = document.getElementById("succes");
+          // succes.style.display = "none";
+          if (0 < parseInt(this.tiped) && parseInt(this.tiped) < 101) {
+            //타이트하게 if문의 조건식을 완성시킨다.
             if (this.randomNum > this.tiped) {
               this.result = "UP!!";
               this.lifeCount--;
@@ -56,19 +72,15 @@
               this.tiped = "";
             } else if (this.randomNum == this.tiped) {
               this.result = "정답입니다";
-            } else {
-              this.result = "숫자를 입력하세요";
+              succes.style.display = "flex";
             }
-          } else if (this.tiped == "") {
+          } else if (this.tiped === "") {
             this.result = "숫자를 입력해주세요";
             this.tiped = "";
           } else {
             this.result = "1부터 100까지의 숫자를 입력해주세요";
             this.tiped = "";
           }
-          // if 문에는 0부터 101 까지
-          // else if 에는 null
-          // else에는 숫자를 입력해주세요
         },
       },
       computed: {},
